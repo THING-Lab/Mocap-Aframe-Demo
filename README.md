@@ -1,1 +1,1 @@
-# VR-Aframe-Demo
+# Mocap-Aframe-Demo
