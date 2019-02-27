@@ -22,16 +22,20 @@ AFRAME.registerComponent('tracked-obj', {
     trackedObjListeners.push(
       (frameData) => {
         const data = frameData[this.data.objID];
-        // How do I calibrate these values. I should probs make them all scaled based on one value passed in
+
+        // How do I calibrate these values.
+        // I should probs make them all scaled based on one value passed in
         if (data) {
           if (data.x && data.y && data.z) {
-            const mesh = this.el.getObject3D('mesh');
-            mesh.position.x = data.x / 700;
-            mesh.position.y = data.z / 700;
-            mesh.position.z = data.y / 700;
+            this.el.object3D.position.x = data.x / 700;
+            this.el.object3D.position.y = data.z / 700;
+            this.el.object3D.position.z = data.y / 700;
+          }
+
+          if (data.xRot && data.yRot && data.zRot) {
+            this.el.object3D.rotation(data.xRot, data.yRot, data.zRot);
           }
         }
-        // Use frame data to set position and rotation
       }
     );
   },

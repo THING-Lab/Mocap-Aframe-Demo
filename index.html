@@ -7,19 +7,27 @@
     <script type="text/javascript" src="socket.io.js"></script>
     <script type="text/javascript" src="aframe.min.js"></script>
     <script type="text/javascript" src="TrackedObj.js"></script>
+    <script type="text/javascript" src="DistanceTrigger.js"></script>
     <!-- Add any other files you need here -->
-
-    <style>
-      body {
-        padding: 20px;
-      }
-    </style>
   </head>
 
   <body>
+    <!-- Put any custom HTML here -->
     <a-scene>
-      <a-sphere id="controller" tracked-obj="objID: 0;" position="0 1.25 -5" radius="0.25" color="#EF2D5E"></a-sphere>
-      <a-sphere id="controller" tracked-obj="objID: 1;" position="0 1.25 -5" radius="0.25" color="#EFEE5E"></a-sphere>
+      <a-entity camera position="0 0 5"></a-entity>
+      <!-- <a-entity
+        id="controller"
+        tracked-obj="objID: 0;"
+        geometry="primitive: box; width: 0.5; height: 0.5; depth: 0.5">
+      </a-entity> -->
+      <a-entity
+        distance-trigger="targetID: box2; triggerDistance: 1;">
+      </a-entity>
+
+      <a-entity id="box2" position="0 0 2"></a-entity>
+      <!-- <a-box id="camera" tracked-obj="objID: 1;" position="0 0 0" color="#4CC3D9"></a-box> -->
+      <!-- <a-sphere id="controller" tracked-obj="objID: 0;" position="0 0 0" radius="0.25" color="#EF2D5E"></a-sphere> -->
+      <!-- <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder> -->
       <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
       <a-sky color="#ECECEC"></a-sky>
     </a-scene>
