@@ -29,11 +29,16 @@ AFRAME.registerComponent('tracked-obj', {
           if (data.x && data.y && data.z) {
             this.el.object3D.position.x = data.x / 700;
             this.el.object3D.position.y = data.z / 700;
-            this.el.object3D.position.z = data.y / 700;
+            this.el.object3D.position.z = -data.y / 700;
           }
 
           if (data.xRot && data.yRot && data.zRot) {
-            this.el.object3D.rotation(data.xRot, data.yRot, data.zRot);
+            this.el.object3D.rotation.set(
+              data.xRot / 360 * Math.PI * 2,
+              data.zRot / 360 * Math.PI * 2,
+              -data.yRot / 180 * Math.PI,
+              'XYZ'
+            );
           }
         }
       }

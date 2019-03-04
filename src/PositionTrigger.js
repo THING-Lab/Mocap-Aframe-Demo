@@ -1,4 +1,4 @@
-AFRAME.registerComponent('distance-trigger', {
+AFRAME.registerComponent('position-trigger', {
   multiple: true,
   schema: {
     targetID: {
@@ -10,33 +10,35 @@ AFRAME.registerComponent('distance-trigger', {
     effectTargetID: {
       default: '',
     },
-    triggerDistance: {
+    triggerValue: {
       default: 0,
     },
+    triggerAxis: {
+      default: 'y',
+    },
+    compare: {
+      default: 'greater',
+    }
   },
 
   init: function() {
     this.hasTriggered = false;
 
-    if (this.data.targetID !== '') {
-      this.triggerTarget = document.querySelector('#' + this.data.targetID);
-
-      this.audio = new Audio();
-      if (this.data.effect == 'sound') {
-        this.audio.src = this.data.effectTargetID;
-      } else {
-        this.effectTarget = this.data.effectTargetID ? document.querySelector('#' + this.data.effectTargetID) : '';
-      }
+    this.effectTarget = this.data.effectTargetID ? document.querySelector('#' + this.data.effectTargetID) : '';
+    this.audio = new Audio();
+    if (this.data.effect == 'sound') {
+      this.audio.src = this.data.effectTargetID;
     }
   },
 
   tick: function() {
     const pos = this.el.object3D.position;
-    const targetPos = this.triggerTarget.object3D.position;
-
-    if (!this.hasTriggered && pos.distanceTo(targetPos) <= this.data.triggerDistance) {
+    const compareFunc = this.data.compare == 'greater' ? (x1, x2) => x1 > x2 : (x1, x2) => x1 < x2;
+  
+    if (!this.hasTriggered && compareFunc(pos[this.data.triggerAxis], this.data.triggerValue)) {
       this.hasTriggered = true;
       if (this.data.effect == 'sound') {
+        // this.el.components.sound.playSound();
         this.audio.play();
       }
       
@@ -49,7 +51,7 @@ AFRAME.registerComponent('distance-trigger', {
       }
     }
 
-    if (this.hasTriggered && pos.distanceTo(targetPos) > this.data.triggerDistance) {
+    if (this.hasTriggered && !compareFunc(pos[this.data.triggerAxis], this.data.triggerValue)) {
       this.hasTriggered = false;
       
       if (this.data.effect == 'show') {

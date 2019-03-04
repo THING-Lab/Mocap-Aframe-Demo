@@ -8,29 +8,65 @@
     <script type="text/javascript" src="aframe.min.js"></script>
     <script type="text/javascript" src="TrackedObj.js"></script>
     <script type="text/javascript" src="DistanceTrigger.js"></script>
+    <script type="text/javascript" src="PositionTrigger.js"></script>
     <!-- Add any other files you need here -->
   </head>
 
   <body>
     <!-- Put any custom HTML here -->
     <a-scene>
-      <a-entity camera position="0 0 5"></a-entity>
-      <!-- <a-entity
-        id="controller"
-        tracked-obj="objID: 0;"
-        geometry="primitive: box; width: 0.5; height: 0.5; depth: 0.5">
-      </a-entity> -->
+      <a-assets>
+        <a-asset-item id="banana-obj" src="banana.obj"></a-asset-item>
+        <a-asset-item id="cat-obj" src="cat.obj"></a-asset-item>
+      </a-assets>
+
+      <a-entity camera position="0 2 5"></a-entity>
+      <a-plane
+        position="0 0 0"
+        rotation="-90 0 0"
+        width="20"
+        height="20"
+        color="#7BC8A4"></a-plane>
       <a-entity
-        distance-trigger="targetID: box2; triggerDistance: 1;">
+        id="cat"
+        scale="0.05 0.05 0.05"
+        tracked-obj="objID: 4"
+        distance-trigger="targetID: banana; triggerDistance: 0.5; effectTargetID: meow.mp3; effect: sound" 
+        obj-model="obj: #cat-obj;"></a-entity>
+        <a-entity id="banana" tracked-obj="objID: 3">
+            <a-entity
+            scale="0.1 0.1 0.1"
+            obj-model="obj: #banana-obj;"
+          >
+          </a-entity>
+        </a-entity>
+    </a-scene>
+
+
+
+
+
+
+
+
+
+      <!-- <a-assets>
+        <a-asset-item id="cat-obj" src="cat.obj"></a-asset-item>
+      </a-assets>
+      
+      <a-entity camera position="0 2 5"></a-entity>
+      <a-entity
+        id="controller"
+        tracked-obj="objID: 2;"
+        scale="0.05 0.05 0.05"
+        position-trigger="effect: sound; effectTargetID: meow.mp3; triggerValue: 2.5;"
+        obj-model="obj: #cat-obj;">
       </a-entity>
 
-      <a-entity id="box2" position="0 0 2"></a-entity>
-      <!-- <a-box id="camera" tracked-obj="objID: 1;" position="0 0 0" color="#4CC3D9"></a-box> -->
-      <!-- <a-sphere id="controller" tracked-obj="objID: 0;" position="0 0 0" radius="0.25" color="#EF2D5E"></a-sphere> -->
-      <!-- <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder> -->
-      <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
+      <a-plane position="0 0 -4" rotation="-90 0 0" width="20" height="20" color="#7BC8A4"></a-plane>
       <a-sky color="#ECECEC"></a-sky>
-    </a-scene>
+
+      distance-trigger="targetID: box2; triggerDistance: 1; effectTargetID: someID; effect: hide/show/sound" -->
 
     <script>
       window.onload = () => initSockets();
