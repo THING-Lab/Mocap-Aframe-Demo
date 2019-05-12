@@ -29,115 +29,18 @@
         <a-entity camera="active: true" rotation="0 90 0"></a-entity>
       </a-entity>
 
-      <!-- <a-entity
-        tracked-obj="objID: 2; xMult: -1"
-      >
-        <a-cone color="tomato" height="2" radius-bottom="0.75" radius-top="0" rotation="0 0 90"></a-cone> 
-        <a-box scale="0.2 0.2 2"></a-box>
-        
-      </a-entity> -->
-
-      <!-- <a-entity
-        tracked-obj="objID: 2; xMult: -1; zMult: -1"
-        position="0 2 0"
-      >
-        <a-cone color="tomato" height="2" radius-bottom="0.75" radius-top="0" rotation="0 0 -90"></a-cone> 
-        <a-box scale="0.2 0.2 2"></a-box>
-      </a-entity>
-
-      <a-entity
-        tracked-obj="objID: 2; zMult: -1"
-        position="0 2 3"
-      >
-        <a-cone color="tomato" height="2" radius-bottom="0.75" radius-top="0" rotation="0 0 -90"></a-cone> 
-        <a-box scale="0.2 0.2 2"></a-box>
-      </a-entity> -->
-
-
-      
-
-
-      <!-- <a-entity
-        tracked-obj="objID: 2; yMult: -1"
-        position="5 2 -6"
-      >
-        <a-cone color="tomato" height="2" radius-bottom="0.75" radius-top="0" rotation="0 0 -90"></a-cone> 
-        <a-box scale="0.2 0.2 2"></a-box>
-      </a-entity>
-
-      <a-entity
-        tracked-obj="objID: 2; yMult: -1; xMult: -1"
-        position="5 2 -3"
-      >
-        <a-cone color="tomato" height="2" radius-bottom="0.75" radius-top="0" rotation="0 0 -90"></a-cone> 
-        <a-box scale="0.2 0.2 2"></a-box>
-      </a-entity>
-
-      <a-entity
-        tracked-obj="objID: 2; yMult: -1; xMult: -1; zMult: -1"
-        position="5 2 0"
-      >
-        <a-cone color="tomato" height="2" radius-bottom="0.75" radius-top="0" rotation="0 0 -90"></a-cone> 
-        <a-box scale="0.2 0.2 2"></a-box>
-      </a-entity>
-
-      <a-entity
-        tracked-obj="objID: 2; yMult: -1; zMult: -1"
-        position="5 2 3"
-      >
-        <a-cone color="tomato" height="2" radius-bottom="0.75" radius-top="0" rotation="0 0 -90"></a-cone> 
-        <a-box scale="0.2 0.2 2"></a-box>
-      </a-entity>
- -->
-
-
-
-
       <a-plane
         position="0 0 0"
         rotation="-90 0 0"
         width="20"
         height="20"
         color="#7BC8A4"></a-plane>
-      <!--  -->
       <a-entity
         id="cat"
         scale="0.05 0.05 0.05"
         obj-model="obj: #cat-obj;"></a-entity>
-      <!-- <a-entity id="banana" tracked-obj="objID: 3">
-          <a-entity
-          scale="0.1 0.1 0.1"
-          obj-model="obj: #banana-obj;"
-        >
-        </a-entity> -->
       </a-entity>
     </a-scene>
-
-
-
-
-
-
-
-
-
-      <!-- <a-assets>
-        <a-asset-item id="cat-obj" src="cat.obj"></a-asset-item>
-      </a-assets>
-      
-      <a-entity camera position="0 2 5"></a-entity>
-      <a-entity
-        id="controller"
-        tracked-obj="objID: 2;"
-        scale="0.05 0.05 0.05"
-        position-trigger="effect: sound; effectTargetID: meow.mp3; triggerValue: 2.5;"
-        obj-model="obj: #cat-obj;">
-      </a-entity>
-
-      <a-plane position="0 0 -4" rotation="-90 0 0" width="20" height="20" color="#7BC8A4"></a-plane>
-      <a-sky color="#ECECEC"></a-sky>
-
-      distance-trigger="targetID: box2; triggerDistance: 1; effectTargetID: someID; effect: hide/show/sound" -->
 
     <script>
       window.onload = () => initSockets();
