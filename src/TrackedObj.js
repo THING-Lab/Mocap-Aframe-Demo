@@ -14,7 +14,16 @@ AFRAME.registerComponent('tracked-obj', {
   multiple: true,
   schema: {
     objID: {
-      default: 0,
+      default: 2,
+    },
+    xMult: {
+      default: 1,
+    },
+    yMult: {
+      default: 1,
+    },
+    zMult: {
+      default: 1,
     },
   },
 
@@ -34,10 +43,10 @@ AFRAME.registerComponent('tracked-obj', {
 
           if (data.xRot && data.yRot && data.zRot) {
             this.el.object3D.rotation.set(
-              data.xRot / 360 * Math.PI * 2,
-              data.zRot / 360 * Math.PI * 2,
-              -data.yRot / 180 * Math.PI,
-              'XYZ'
+              data.xRot / 180 * Math.PI * this.data.xMult,
+              data.zRot / 180 * Math.PI * this.data.yMult,
+              data.yRot / 180 * Math.PI * this.data.zMult,
+              'XZY'
             );
           }
         }
