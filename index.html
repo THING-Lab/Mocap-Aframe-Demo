@@ -9,6 +9,7 @@
     <script type="text/javascript" src="TrackedObj.js"></script>
     <script type="text/javascript" src="DistanceTrigger.js"></script>
     <script type="text/javascript" src="PositionTrigger.js"></script>
+    <script type="text/javascript" src="GenerateBox.js"></script>
     <!-- Add any other files you need here -->
   </head>
 
@@ -20,14 +21,28 @@
         <a-asset-item id="cat-obj" src="cat.obj"></a-asset-item>
       </a-assets>
 
+      <!-- <a-entity tracked-obj="objID: 2" camera="active: false"></a-entity> -->
       <a-entity
         tracked-obj="objID: 2; zMult: -1"
-        position="0 2 -6"
       >
-        <!-- <a-cone color="tomato" height="2" radius-bottom="0.75" radius-top="0" rotation="0 0 90"></a-cone> 
-        <a-box scale="0.2 0.2 2"></a-box> -->
-        <a-entity camera="active: true" rotation="0 90 0"></a-entity>
+        <a-entity rotation="0 90 0">
+          <a-entity camera="active: true"></a-entity>
+        </a-entity>
       </a-entity>
+
+      <!-- <a-entity tracked-obj="objID: 2">
+        <a-entity rotation="0 90 0">
+            <a-entity rotation="0 0 120">
+              <a-entity position="0 -1.6 0">
+                <a-entity camera="active: true"></a-entity>
+              </a-entity>
+            </a-entity>
+        </a-entity>
+      </a-entity> -->
+
+      <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9" shadow></a-box>
+      <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E" shadow></a-sphere>
+      <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D" shadow></a-cylinder>
 
       <a-plane
         position="0 0 0"
@@ -35,15 +50,24 @@
         width="20"
         height="20"
         color="#7BC8A4"></a-plane>
-      <a-entity
+      <!-- <a-entity
         id="cat"
-        scale="0.05 0.05 0.05"
-        obj-model="obj: #cat-obj;"></a-entity>
-      </a-entity>
+        scale="3 3 3"
+        obj-model="obj: #cat-obj;"></a-entity> -->
+      <a-entity id="box-parent"></a-entity>
+
     </a-scene>
 
     <script>
-      window.onload = () => initSockets();
+      window.onload = () => {
+        initSockets();
+
+        const boxParent = document.querySelector('#box-parent');
+        const numBoxes = 100;
+        for (let i = 0; i < numBoxes; i++) {
+          // boxParent.appendChild(generateBox());
+        }
+      }
     </script>
   </body>
 </html>

@@ -16,39 +16,32 @@ AFRAME.registerComponent('tracked-obj', {
     objID: {
       default: 2,
     },
-    xMult: {
-      default: 1,
-    },
-    yMult: {
-      default: 1,
-    },
-    zMult: {
-      default: 1,
-    },
   },
 
   init: function() {
     trackedObjListeners.push(
       (frameData) => {
-        const data = frameData[this.data.objID];
+        const body = frameData[this.data.objID];
 
         // How do I calibrate these values.
         // I should probs make them all scaled based on one value passed in
-        if (data) {
-          if (data.x && data.y && data.z) {
-            this.el.object3D.position.x = data.x / 700;
-            this.el.object3D.position.y = data.z / 700;
-            this.el.object3D.position.z = -data.y / 700;
+        if (body) {
+          if (body.x && body.y && body.z) {
+            this.el.object3D.position.x = body.x / 700;
+            this.el.object3D.position.y = body.z / 700;
+            this.el.object3D.position.z = -body.y / 700;
           }
 
-          if (data.xRot && data.yRot && data.zRot) {
+          if (body.xRot && body.yRot && body.zRot) {
             this.el.object3D.rotation.set(
-              data.xRot / 180 * Math.PI * this.data.xMult,
-              data.zRot / 180 * Math.PI * this.data.yMult,
-              data.yRot / 180 * Math.PI * this.data.zMult,
+              body.xRot / 180 * Math.PI,
+              (body.zRot / 180 * Math.PI),
+              body.yRot / 180 * Math.PI * -1,
               'XZY'
             );
           }
+        } else {
+          console.warn('Missing Tracked Object at ID', this.data.objID)
         }
       }
     );
